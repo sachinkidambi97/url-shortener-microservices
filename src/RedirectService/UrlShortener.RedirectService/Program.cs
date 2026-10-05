@@ -24,6 +24,16 @@ try
         .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {CorrelationId} {Message:lj}{NewLine}{Exception}"));
 
     builder.Services.AddControllers();
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowFrontend", policy =>
+        {
+            policy.WithOrigins("http://localhost:3000")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials();
+        });
+    });
 
     // EF Core — read-only, NO migrations
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
@@ -73,6 +83,8 @@ try
     // Middleware pipeline
     app.UseMiddleware<ExceptionHandlingMiddleware>();
     app.UseMiddleware<CorrelationIdMiddleware>();
+
+    app.UseCors("AllowFrontend");
 
     app.UseSerilogRequestLogging();
 
