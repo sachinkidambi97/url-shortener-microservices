@@ -1,0 +1,14 @@
+namespace UrlShortener.ShorteningApi.Models;
+
+public sealed class ShortenedUrl
+{
+    public int Id { get; set; }
+    public required string ShortCode { get; set; }
+    public required string OriginalUrl { get; set; }
+    public string? Alias { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public DateTimeOffset? ExpiresAt { get; set; }
+
+    public int? UserId { get; set; }
+    public User? User { get; set; }
+}

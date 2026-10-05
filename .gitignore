@@ -1,0 +1,51 @@
+## .gitignore for .NET microservices solution
+
+# Build output
+bin/
+obj/
+out/
+publish/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+[Pp]ackages/
+.nuget/
+
+# Entity Framework migrations (keep if generated, but not build artifacts)
+# Uncomment if you do NOT want migrations in source control:
+# **/Migrations/
+
+# User secrets
+**/secrets.json
+**/appsettings.Development.json
+
+# Docker
+.dockerignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test results
+TestResults/
+coverage/
+*.trx
+*.coveragexml
+
+# Logs
+*.log
+logs/
